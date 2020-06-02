@@ -43,27 +43,29 @@ class TestPerformance {
   func runTrie(prefix: String) {
     let startingPoint = CFAbsoluteTimeGetCurrent()
     let results = trie.words(withPrefix: prefix)
-    print("Total found with Trie: \(results.count)")
     let totalTime = CFAbsoluteTimeGetCurrent() - startingPoint
+    print(results)
+    print("Total found with Trie: \(results.count)")
     print("Total time: \(totalTime) seconds")
   }
   
   func runBasicSearch(prefix: String) {
-    let basicSearch = BasicPrefixSearch()
+    let basicSearch = BasicPrefixSearch(words: words)
     let startingPoint = CFAbsoluteTimeGetCurrent()
-    let results = basicSearch.prefix(prefix, forWords: words)
-    print("Total found with basic: \(results.count)")
+    let results = basicSearch.words(withPrefix: prefix)
     let totalTime = CFAbsoluteTimeGetCurrent() - startingPoint
+    print(results)
+    print("Total found with basic: \(results.count)")
     print("Total time: \(totalTime) seconds")
   }
 }
 
-let prefix = "sear"
+let prefix = "searching"
 let test = TestPerformance()
 test.loadWords()
 test.runTrie(prefix: prefix)
+print()
 test.runBasicSearch(prefix: prefix)
-
 
 // Prefix: "sear"
 // Word size: 10,000
