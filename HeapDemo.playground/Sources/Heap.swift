@@ -1,10 +1,10 @@
 import Foundation
 
-struct Heap<Element: Equatable> {
+public struct Heap<Element: Equatable> {
   private var elements: [Element] = []
   private let sort: (Element, Element) -> Bool
   
-  init(sort: @escaping (Element, Element) -> Bool, elements: [Element] = []) {
+  public init(sort: @escaping (Element, Element) -> Bool, elements: [Element] = []) {
     self.sort = sort
     self.elements = elements
     
@@ -17,7 +17,7 @@ struct Heap<Element: Equatable> {
   }
 }
 
-extension Heap {
+public extension Heap {
   var isEmpty: Bool {
     elements.isEmpty
   }
