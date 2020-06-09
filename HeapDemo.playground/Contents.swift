@@ -60,3 +60,17 @@ if let result1 = findNthSmallestElement(n: 1, array: integers) {
   print("ERROR!")
 }
 
+
+
+/*
+Write a method that combine two heaps
+*/
+
+let heap1 = Heap(sort: >, elements: [3, 10, 18, 5, 21, 100])
+var heap2 = Heap(sort: >, elements: [21, 10, 15, 3, 14, 8])
+
+print("\nResult for merging two heaps: ")
+heap2.merge(heap: heap1)
+while !heap2.isEmpty {
+  print(heap2.remove()!)
+}

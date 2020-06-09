@@ -1,19 +1,14 @@
 import Foundation
 
 public struct Heap<Element: Equatable> {
-  private var elements: [Element] = []
-  private let sort: (Element, Element) -> Bool
+  var elements: [Element] = []
+  let sort: (Element, Element) -> Bool
   
   public init(sort: @escaping (Element, Element) -> Bool, elements: [Element] = []) {
     self.sort = sort
     self.elements = elements
     
-    if !elements.isEmpty {
-      //You start from the half of the array, because you only work with parents
-      for i in stride(from: count / 2 - 1, through: 0, by: -1) {
-        siftDown(from: i)
-      }
-    }
+    buildHeap()
   }
 }
 
@@ -40,6 +35,15 @@ public extension Heap {
   
   func parentIndex(ofChildAt index: Int) -> Int {
     (index - 1) / 2
+  }
+  
+  mutating func buildHeap() {
+    if !elements.isEmpty {
+      //You start from the half of the array, because you only work with parents
+      for i in stride(from: count / 2 - 1, through: 0, by: -1) {
+        siftDown(from: i)
+      }
+    }
   }
   
   mutating func remove() -> Element? {
@@ -140,5 +144,10 @@ public extension Heap {
     }
     
     return nil
+  }
+  
+  mutating func merge(heap: Heap) {
+    elements = elements + heap.elements
+    buildHeap()
   }
 }
