@@ -74,3 +74,48 @@ heap2.merge(heap: heap1)
 while !heap2.isEmpty {
   print(heap2.remove()!)
 }
+
+
+/*
+ A Min Heap?
+ 
+ Write a function to check if a given array is a min heap
+*/
+
+let minHeapArray = [1, 3, 18, 5, 10, 100, 21]
+
+func leftChildIndex(ofParentAt index: Int) -> Int {
+  (2 * index) + 1
+}
+
+func rightChildIndex(ofParentAt index: Int) -> Int {
+  (2 * index) + 2
+}
+
+func isMinHeap(array: [Int]) -> Bool {
+  
+  guard !array.isEmpty else {
+    return false
+  }
+  
+  for i in stride(from: array.count/2 - 1, to: 0, by: -1) {
+    let parent = i
+    
+    let left = leftChildIndex(ofParentAt: parent)
+    let right = rightChildIndex(ofParentAt: parent)
+    
+    if left < array.count && array[parent] > array[left] {
+      return false
+    }
+    
+    if right < array.count && array[parent] > array[right] {
+      return false
+    }
+  }
+  
+  return true
+}
+
+print("\nResult of isMinHeap: ")
+print(isMinHeap(array: minHeapArray))
+
