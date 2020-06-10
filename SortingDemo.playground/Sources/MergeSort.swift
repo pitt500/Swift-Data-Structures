@@ -23,6 +23,7 @@ private func merge<Element: Comparable>(_ left: [Element], _ right: [Element]) -
   var rightIndex = 0
   
   var result: [Element] = []
+  result.reserveCapacity(left.count + right.count)
   
   while leftIndex < left.count && rightIndex < right.count {
     let leftElement = left[leftIndex]
