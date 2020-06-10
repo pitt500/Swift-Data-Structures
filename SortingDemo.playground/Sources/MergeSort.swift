@@ -1,5 +1,10 @@
 import Foundation
 
+/*
+ Complexity:
+ - Time -> O(n*Log(n))
+ - Space -> O(n*Log(n))
+ */
 public func mergeSort<Element: Comparable>(_ array: [Element]) -> [Element] {
   guard array.count > 1 else {
     return array
